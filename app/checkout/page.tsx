@@ -151,23 +151,44 @@ export default function CheckoutPage() {
       const table = makeTable(["Item", "Qty", "Price", "Total"], rows);
 
       const message = `
-🛒 *New Order*
+🛍️ *NEW ORDER REQUEST*
+━━━━━━━━━━━━━━━━━━
 
-${table}
+📦 *PRODUCT DETAILS*
+${cart.items
+  .map(
+    (it: any, i: number) =>
+      `${i + 1}. ${it.name}
+   ▸ Quantity : ${it.qty}
+   ▸ Price    : $${it.price}
+   ▸ Total    : $${(it.qty * it.price).toFixed(2)}`
+  )
+  .join("\n\n")}
 
-Subtotal: ${formatPrice(subtotal)}
-Shipping: ${formatPrice(shippingFee)}
-Total: *${formatPrice(total)}*
+━━━━━━━━━━━━━━━━━━
+💰 *PAYMENT SUMMARY*
+Subtotal : ${formatPrice(subtotal)}
+Shipping : ${formatPrice(shippingFee)}
+Grand Total : *${formatPrice(total)}*
 
-👤 *Customer*
-${shipping.fullName}
-${shipping.phone}
-${shipping.address1}, ${shipping.city}
-${shipping.state}, ${shipping.zip}
-${shipping.country}
+━━━━━━━━━━━━━━━━━━
+🚚 *DELIVERY DETAILS*
+Name    : ${shipping.fullName}
+Phone   : ${shipping.phone}
+Email   : ${shipping.email}
+Address : ${shipping.address1}
+          ${shipping.address2 || ""}
+City    : ${shipping.city}
+State   : ${shipping.state}
+ZIP     : ${shipping.zip}
+Country : ${shipping.country}
 
-Notes: ${shipping.deliveryNotes || "None"}
+📝 Notes : ${shipping.deliveryNotes || "None"}
+
+━━━━━━━━━━━━━━━━━━
+Please confirm availability and payment details.
 `;
+
 
       cart.clear();
 
