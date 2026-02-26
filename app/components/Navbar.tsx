@@ -82,7 +82,7 @@ export default function Navbar() {
           </div>
 
           <div className="flex items-center gap-4">
-            {/* ✅ /* Login disabled */ or Profile-letter */}
+            {/* ✅ /* Login disabled or Profile-letter */}
             {!user ? (
               <button
                 type="button"
