@@ -5,7 +5,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { useCart } from "../components/CartContext";
 
-const WHATSAPP_NUMBER = "6305419750";
+const WHATSAPP_NUMBER = "9949322398";
 
 type Shipping = {
   fullName: string;
